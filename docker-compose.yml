@@ -13,8 +13,8 @@ services:
     cap_drop:
       - ALL
     environment:
-      - EXACQ_SERVER=https://10.9.46.7:8000,https://10.5.1.50:8000,https://10.5.1.59:8000,https://10.5.1.48:8000,https://10.5.1.51:8000,https://10.5.1.52:8000,https://10.5.1.53:8000,https://10.5.1.54:8000,https://10.5.1.55:8000,https://10.5.1.56:8000,https://10.5.1.57:8000,https://10.5.1.58:8000,https://10.9.43.5:8000,https://10.9.27.4:8000,https://10.9.35.6:8000,https://10.9.21.5:8000,https://10.5.1.61:8000,https://10.6.54.5:8000,https://10.9.47.5:8000,https://10.9.61.51:8000,https://10.9.39.5:8000
-      - EXACQ_USER=camera-dashboard
+      environment:
+      - EXACQ_SERVER=https://SERVER1_IP:8000,https://SERVER2_IP:8000
       - EXACQ_PASS=${EXACQ_PASS}
       - SMTP_HOST=localhost
       - SMTP_PORT=25
