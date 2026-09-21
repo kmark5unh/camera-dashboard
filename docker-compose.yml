@@ -8,20 +8,16 @@ services:
       - "8000:8000"
     volumes:
       - camera_data:/data
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
     environment:
-      environment:
-      - EXACQ_SERVER=https://SERVER1_IP:8000,https://SERVER2_IP:8000
-      - EXACQ_PASS=${EXACQ_PASS}
-      - SMTP_HOST=localhost
-      - SMTP_PORT=25
-      - SMTP_USER=disabled@university.edu
-      - SMTP_PASS=disabled
-      - EMAIL_TO=admin@university.edu
-      - BLUR_THRESHOLD=100.0
+      EXACQ_SERVER: "${EXACQ_SERVER}"
+      EXACQ_USER: "camera-dashboard"
+      EXACQ_PASS: "${EXACQ_PASS}"
+      SMTP_HOST: "smtp.university.edu"
+      SMTP_PORT: "587"
+      SMTP_USER: "disabled@university.edu"
+      SMTP_PASS: "disabled"
+      EMAIL_TO: "admin@university.edu"
+      BLUR_THRESHOLD: "100.0"
     restart: always
 
 volumes:
