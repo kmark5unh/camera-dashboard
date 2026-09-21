@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   camera-dashboard:
-    build: .
+    image: python:3.11-slim
     container_name: camera_dashboard
     ports:
       - "8000:8000"
@@ -10,14 +10,17 @@ services:
       - camera_data:/data
     environment:
       EXACQ_SERVER: "${EXACQ_SERVER}"
-      EXACQ_USER: "camera-dashboard"
+      EXACQ_USER: "${EXACQ_USER}"
       EXACQ_PASS: "${EXACQ_PASS}"
-      SMTP_HOST: "smtp.university.edu"
-      SMTP_PORT: "587"
-      SMTP_USER: "disabled@university.edu"
-      SMTP_PASS: "disabled"
-      EMAIL_TO: "admin@university.edu"
-      BLUR_THRESHOLD: "100.0"
+      SMTP_HOST: "${SMTP_HOST}"
+      SMTP_PORT: "${SMTP_PORT}"
+      SMTP_USER: "${SMTP_USER}"
+      SMTP_PASS: "${SMTP_PASS}"
+      EMAIL_TO: "${EMAIL_TO}"
+      BLUR_THRESHOLD: "${BLUR_THRESHOLD:-100.0}"
+    command: >
+      sh -c "pip install --no-cache-dir fastapi uvicorn requests apscheduler sqlite-utils opencv-python-headless numpy &&
+             uvicorn main:app --host 0.0.0.0 --port 8000"
     restart: always
 
 volumes:
