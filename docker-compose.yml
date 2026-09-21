@@ -18,9 +18,8 @@ services:
       SMTP_PASS: "${SMTP_PASS}"
       EMAIL_TO: "${EMAIL_TO}"
       BLUR_THRESHOLD: "${BLUR_THRESHOLD:-100.0}"
-    command: >
-      sh -c "pip install --no-cache-dir fastapi uvicorn requests apscheduler sqlite-utils opencv-python-headless numpy &&
-             uvicorn main:app --host 0.0.0.0 --port 8000"
+      SCRIPT_URL: "${SCRIPT_URL}"
+    command: sh -c "${STARTUP_COMMAND}"
     restart: always
 
 volumes:
